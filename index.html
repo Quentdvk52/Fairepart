@@ -24,8 +24,8 @@
             },
             // Audio Google Drive (priorité)
             audioDrive: {
-                main: 'https://drive.google.com/uc?export=download&id=16ESxve26XfHgOWCIqTbwxDbqUGcoav4V',
-                thanks: 'https://drive.google.com/uc?export=download&id=1zBofUo6qvgaTXTuY6MZ45rgei5Oaqv6G'
+                main: 'https://drive.google.com/uc?export=view&id=16ESxve26XfHgOWCIqTbwxDbqUGcoav4V',
+                thanks: 'https://drive.google.com/uc?export=view&id=1zBofUo6qvgaTXTuY6MZ45rgei5Oaqv6G'
             },
             // Fallback locaux (si Google Drive échoue)
             images: {
@@ -1067,23 +1067,33 @@
         const audioBars1 = document.querySelectorAll('#audio1 .audio-bar');
 
         const initAudio1 = () => {
+            console.log('Tentative de lecture audio 1...');
+            console.log('Source audio 1:', audio1.currentSrc);
+            audio1.load(); // Force le chargement
+            
             audio1.play().then(() => {
+                console.log('Audio 1 démarré avec succès');
                 playIcon1.style.display = 'none';
                 pauseIcon1.style.display = 'block';
                 audioBars1.forEach(bar => bar.classList.remove('paused'));
             }).catch(error => {
-                console.log('Auto-play prevented, waiting for user interaction');
+                console.error('Erreur de lecture audio 1:', error);
+                console.log('Type MIME audio:', audio1.currentSrc);
             });
         };
 
         setTimeout(initAudio1, 2000);
 
         playBtn1.addEventListener('click', () => {
+            console.log('Clic sur bouton audio 1, paused:', audio1.paused);
             if (audio1.paused) {
-                audio1.play();
-                playIcon1.style.display = 'none';
-                pauseIcon1.style.display = 'block';
-                audioBars1.forEach(bar => bar.classList.remove('paused'));
+                audio1.play().then(() => {
+                    playIcon1.style.display = 'none';
+                    pauseIcon1.style.display = 'block';
+                    audioBars1.forEach(bar => bar.classList.remove('paused'));
+                }).catch(error => {
+                    console.error('Erreur lecture manuelle audio 1:', error);
+                });
             } else {
                 audio1.pause();
                 playIcon1.style.display = 'block';
@@ -1094,8 +1104,19 @@
 
         // Auto-play audio 2 when audio 1 ends
         audio1.addEventListener('ended', () => {
+            console.log('Audio 1 terminé, démarrage audio 2');
             const audio2 = document.getElementById('mainAudio2');
-            audio2.play();
+            audio2.play().then(() => {
+                console.log('Audio 2 démarré avec succès');
+            }).catch(error => {
+                console.error('Erreur lecture audio 2:', error);
+            });
+        });
+
+        audio1.addEventListener('error', (e) => {
+            console.error('Erreur de chargement audio 1:', e);
+            console.log('Code erreur:', audio1.error?.code);
+            console.log('Message erreur:', audio1.error?.message);
         });
 
         // Audio 2
@@ -1106,17 +1127,29 @@
         const audioBars2 = document.querySelectorAll('#remerciements .audio-bar');
 
         playBtn2.addEventListener('click', () => {
+            console.log('Clic sur bouton audio 2, paused:', audio2.paused);
+            console.log('Source audio 2:', audio2.currentSrc);
             if (audio2.paused) {
-                audio2.play();
-                playIcon2.style.display = 'none';
-                pauseIcon2.style.display = 'block';
-                audioBars2.forEach(bar => bar.classList.remove('paused'));
+                audio2.play().then(() => {
+                    console.log('Audio 2 démarré manuellement');
+                    playIcon2.style.display = 'none';
+                    pauseIcon2.style.display = 'block';
+                    audioBars2.forEach(bar => bar.classList.remove('paused'));
+                }).catch(error => {
+                    console.error('Erreur lecture manuelle audio 2:', error);
+                });
             } else {
                 audio2.pause();
                 playIcon2.style.display = 'block';
                 pauseIcon2.style.display = 'none';
                 audioBars2.forEach(bar => bar.classList.add('paused'));
             }
+        });
+
+        audio2.addEventListener('error', (e) => {
+            console.error('Erreur de chargement audio 2:', e);
+            console.log('Code erreur:', audio2.error?.code);
+            console.log('Message erreur:', audio2.error?.message);
         });
 
         // Scroll animations
