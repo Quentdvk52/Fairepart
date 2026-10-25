@@ -11,23 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-        // Configuration des médias - Google Drive en priorité
+        // Configuration des médias - Fichiers locaux en priorité
         const MEDIA_URLS = {
-            // Google Drive (priorité)
-            googleDrive: {
-                hero: 'https://lh3.googleusercontent.com/d/1hm5p-r8_5oCRK5LLi9kwFw1o8fkGVOxv',
-                couple: 'https://lh3.googleusercontent.com/d/1xeYL4PuEpE8dlVx9MVG-OWB7diWHxwLi',
-                circle: 'https://lh3.googleusercontent.com/d/1cx6CWk7WPeSOHl6_Iv13kTslJnUO9l88',
-                tissue: 'https://lh3.googleusercontent.com/d/1DQeTTEIEUvRJz7xKPzD_UaZ0MUMcTvec',
-                souvenir1: 'https://lh3.googleusercontent.com/d/1Q-1Gwu2AU_wVTxRsYmjCDSTGqRi9xi_C',
-                souvenir2: 'https://lh3.googleusercontent.com/d/10I7eb3aeyKeBK4rHXnXZt6oq5_QVEk_R'
-            },
-            // Audio Google Drive (priorité)
-            audioDrive: {
-                main: 'https://drive.google.com/uc?export=view&id=16ESxve26XfHgOWCIqTbwxDbqUGcoav4V',
-                thanks: 'https://drive.google.com/uc?export=view&id=1zBofUo6qvgaTXTuY6MZ45rgei5Oaqv6G'
-            },
-            // Fallback locaux (si Google Drive échoue)
+            // Fichiers locaux (priorité)
             images: {
                 hero: 'assets/images/hero.jpg',
                 couple: 'assets/images/couple.jpg',
@@ -42,13 +28,13 @@
             }
         };
 
-        // Fonction pour obtenir l'URL (Google Drive priorité)
+        // Fonction pour obtenir l'URL
         function getImageUrl(key) {
-            return MEDIA_URLS.googleDrive[key] || MEDIA_URLS.images[key];
+            return MEDIA_URLS.images[key];
         }
 
         function getAudioUrl(key) {
-            return MEDIA_URLS.audioDrive[key] || MEDIA_URLS.audio[key];
+            return MEDIA_URLS.audio[key];
         }
     </script>
     <style>
@@ -971,7 +957,7 @@
     </footer>
 
     <script>
-        // Charger les médias dynamiquement (Google Drive priorité)
+        // Charger les médias dynamiquement (fichiers locaux)
         document.addEventListener('DOMContentLoaded', function() {
             // Images
             document.getElementById('hero-image').src = getImageUrl('hero');
