@@ -47,6 +47,19 @@ Créer un site web one-page, responsive et mobile-first pour annoncer un décès
 - ✅ Phase 3 : Exécution (site créé avec données réelles)
 - ✅ Phase 4 : Vérification
 - ✅ Phase 5 : Clôture
+- ✅ Phase 6 : Déploiement sur GitHub et Vercel
+- ✅ Phase 7 : Intégration fichiers médias locaux (fix audio)
+
+## Déploiement
+- **GitHub** : https://github.com/Quentdvk52/Fairepart
+- **Vercel** : Connecté au dépôt Fairepart (déploiement automatique)
+- **Branches** : main (protégée)
+- **Secrets** : Aucun secret dans le dépôt (fichiers exclus via .gitignore)
+
+## Problèmes résolus
+- **Audio non fonctionnel sur Vercel** : Les URLs Google Drive ne streaming pas correctement
+- **Solution** : Téléchargement des fichiers audio et images localement dans assets/
+- **Résultat** : Fichiers servis directement depuis le dépôt GitHub, garantissant un chargement fiable
 
 ## Données réelles intégrées
 - **Personne** : Kouzalode djotondagba agounha (90 ans)
@@ -54,14 +67,15 @@ Créer un site web one-page, responsive et mobile-first pour annoncer un décès
 - **Familles** : AZOUNHOUMIN, KAKOUDE, AKOUKPAHOUN, ABETEKOU, TOHOSSSOU AGOUNHA, DASSOU
 - **Couple** : HOUNNONGAN DASSOU
 - **Localisation** : Cs Gnidjaszoun (Google Maps)
-- **Médias** : 
-  - Photo hero (Google Drive)
-  - Photo couple (Google Drive)
-  - Photo losange (Google Drive)
-  - Photo tissus (Google Drive)
-  - 2 photos souvenir côte à côte (Google Drive)
-  - Audio 1 auto-play (Google Drive)
-  - Audio 2 (démarre après audio 1, Google Drive)
+- **Médias** (fichiers locaux dans assets/) :
+  - Photo hero : assets/images/hero.jpg
+  - Photo couple : assets/images/couple.jpg
+  - Photo cercle : assets/images/circle.jpg
+  - Photo tissus : assets/images/tissue.jpg
+  - Photo souvenir 1 : assets/images/souvenir1.jpg
+  - Photo souvenir 2 : assets/images/souvenir2.jpg
+  - Audio 1 : assets/audio/main.mp3 (auto-play)
+  - Audio 2 : assets/audio/thanks.mp3 (démarre après audio 1)
 - **Éléments graphiques** :
   - "In Memoriam" (Great Vibes) au-dessus de la photo
   - Nom en bas à gauche de la photo

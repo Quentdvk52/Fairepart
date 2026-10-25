@@ -33,14 +33,14 @@ Site web one-page, responsive et mobile-first pour les obsèques de Kouzalode dj
 
 ### 1. Hero Section
 - **Titre** : "In Memoriam" (Great Vibes, doré)
-- **Photo** : Photo de la défunte (Google Drive)
+- **Photo** : Photo de la défunte (assets/images/hero.jpg)
 - **Nom** : Kouzalode djotondagba agounha (en bas à gauche)
 - **Bougie + Âge** : Bougie animée + badge 90 ANS (en bas à droite)
 
 ### 2. Lecteur Audio 1
 - **Auto-play** : Démarre automatiquement après 2 secondes
 - **Bouton** : Play/Pause avec visualiseur
-- **Fichier** : Google Drive (ID: 16ESxve26XfHgOWCIqTbwxDbqUGcoav4V)
+- **Fichier** : assets/audio/main.mp3
 
 ### 3. Annonce de Décès
 - **Titre** : "Annonce de décès" (police artistique)
@@ -52,12 +52,12 @@ Site web one-page, responsive et mobile-first pour les obsèques de Kouzalode dj
   - Famille TOHOSSSOU AGOUNHA de Gnidjaszoun
   - Famille DASSOU de Dokpa Tohizanli
 - **Titre couple** : "Le Couple HOUNNONGAN DASSOU"
-- **Photo couple** : Google Drive (ID: 1xeYL4PuEpE8dlVx9MVG-OWB7diWHxwLi)
+- **Photo couple** : assets/images/couple.jpg
 - **Texte invitation** : Avec nom en évidence
 
-### 4. Photo Losange
-- **Cadre** : Losange doré avec bordure rotative
-- **Photo** : Google Drive (ID: 1cx6CWk7WPeSOHl6_Iv13kTslJnUO9l88)
+### 4. Photo Cercle
+- **Cadre** : Cercle doré
+- **Photo** : assets/images/circle.jpg
 
 ### 5. Localisation
 - **Carte** : Google Maps embed de Gnidjaszoun
@@ -65,13 +65,16 @@ Site web one-page, responsive et mobile-first pour les obsèques de Kouzalode dj
 
 ### 6. Tissus
 - **Titre** : "Tissus de la cérémonie"
-- **Photo** : Google Drive (ID: 1DQeTTEIEUvRJz7xKPzD_UaZ0MUMcTvec)
+- **Photo** : assets/images/tissue.jpg
 - **Bouton** : Commander → WhatsApp +229 96 78 53 41
 
 ### 7. Remerciements
 - **Titre** : "Remerciements"
 - **Lecteur audio 2** : Démarre automatiquement après la fin de l'audio 1
+- **Fichier** : assets/audio/thanks.mp3
 - **Deux photos** : Côte à côte (grille responsive)
+  - Photo 1 : assets/images/souvenir1.jpg
+  - Photo 2 : assets/images/souvenir2.jpg
 - **Texte** : Message de gratitude complet
 - **Grand Merci** : En police Great Vibes, doré
 
@@ -101,15 +104,24 @@ Site web one-page, responsive et mobile-first pour les obsèques de Kouzalode dj
 ## 📝 Personnalisation
 
 ### Changer les photos
-Remplacez les URLs Google Drive par vos propres URLs :
+Les fichiers médias sont stockés localement dans les dossiers `assets/` :
 
-```html
-<!-- Photo hero -->
-<img src="https://drive.google.com/uc?export=view&id=VOTRE_ID" alt="...">
+1. **Images** : `assets/images/`
+   - hero.jpg : Photo hero
+   - couple.jpg : Photo du couple
+   - circle.jpg : Photo en cercle
+   - tissue.jpg : Photo des tissus
+   - souvenir1.jpg : Photo souvenir 1
+   - souvenir2.jpg : Photo souvenir 2
 
-<!-- Photo couple -->
-<img src="https://drive.google.com/uc?export=view&id=VOTRE_ID" alt="...">
-```
+2. **Audio** : `assets/audio/`
+   - main.mp3 : Musique de recueillement
+   - thanks.mp3 : Musique de remerciements
+
+Pour changer un fichier :
+1. Remplacez le fichier dans le dossier correspondant
+2. Gardez le même nom de fichier
+3. Push sur GitHub pour mettre à jour
 
 ### Changer l'âge
 ```html
@@ -137,18 +149,20 @@ Remplacez l'URL de l'iframe Google Maps par la nouvelle localisation.
 
 ## 🚀 Déploiement
 
-### GitHub Pages
-1. Créez un repository sur GitHub
-2. Uploadez `index.html`
-3. Settings > Pages > Activez sur branche main
-
-### Netlify
-1. Glissez-déposez le dossier sur Netlify
-2. Déploiement instantané
+### GitHub
+- **Repository** : https://github.com/Quentdvk52/Fairepart
+- **Branche** : main
+- **Statut** : Actif et connecté à Vercel
 
 ### Vercel
-1. Importez le projet sur Vercel
-2. Déployez en un clic
+- **Statut** : Connecté au dépôt GitHub
+- **Déploiement** : Automatique à chaque push sur main
+- **URL** : https://fairepart.vercel.app (ou votre domaine personnalisé)
+
+Pour déployer une mise à jour :
+1. Modifiez les fichiers localement
+2. Commit et push sur GitHub : `git push origin main`
+3. Vercel déploie automatiquement en quelques secondes
 
 ## 🧪 Checklist Avant Publication
 
@@ -167,8 +181,8 @@ Remplacez l'URL de l'iframe Google Maps par la nouvelle localisation.
 ### Auto-play Audio
 Les navigateurs modernes peuvent bloquer l'auto-play. Le code tente de lancer automatiquement, mais si bloqué, l'utilisateur peut cliquer sur le bouton play.
 
-### Photos Google Drive
-Les URLs utilisent le format `uc?export=view&id=` pour un affichage direct. Assurez-vous que les fichiers sont partagés avec "Tout le monde avec le lien".
+### Fichiers médias
+Les fichiers images et audio sont stockés localement dans les dossiers `assets/` et servis directement depuis GitHub/Vercel, garantissant un chargement fiable.
 
 ### WhatsApp
 Les numéros sont au format international sans le + (ex: 229 pour le Bénin).
