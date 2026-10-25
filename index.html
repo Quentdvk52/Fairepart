@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Obsèques de Kouzalode djotondagba agounha">
     <title>Obsèques de Kouzalode djotondagba agounha</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fairepart.vercel.app/">
+    <meta property="og:title" content="Invitation Hounnongan Gbedossou DASSOU pour obsèques de sa belle mère">
+    <meta property="og:description" content="Obsèques de Kouzalode djotondagba agounha - Samedi 28 Novembre 2026 à 12h à Gnidjaszoun">
+    <meta property="og:image" content="https://fairepart.vercel.app/assets/images/hero.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fairepart.vercel.app/">
+    <meta property="twitter:title" content="Invitation Hounnongan Gbedossou DASSOU pour obsèques de sa belle mère">
+    <meta property="twitter:description" content="Obsèques de Kouzalode djotondagba agounha - Samedi 28 Novembre 2026 à 12h à Gnidjaszoun">
+    <meta property="twitter:image" content="https://fairepart.vercel.app/assets/images/hero.jpg">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,6 +39,7 @@
             },
             audio: {
                 main: 'assets/audio/main.mp3',
+                annonce: 'assets/audio/annonce.mp3',
                 thanks: 'assets/audio/thanks.mp3'
             }
         };
@@ -679,12 +695,6 @@
             margin-right: auto;
         }
 
-        @media (max-width: 768px) {
-            .photos-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .photos-grid img {
             width: 100%;
             border: 2px solid var(--color-gold);
@@ -703,12 +713,67 @@
         .footer-credit {
             font-size: 1rem;
             color: var(--color-muted);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
         }
 
         .footer-credit span {
             color: var(--color-gold);
             font-weight: 600;
+        }
+
+        .footer-promo {
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        /* Menu Carousel */
+        .menu-section {
+            background: var(--color-dark-gray);
+            padding: var(--spacing-2xl) var(--spacing-md);
+            text-align: center;
+            border-bottom: 2px solid var(--color-gold);
+        }
+
+        .menu-carousel {
+            overflow: hidden;
+            margin-top: var(--spacing-xl);
+        }
+
+        .menu-track {
+            display: flex;
+            gap: var(--spacing-md);
+            animation: scroll-left 30s linear infinite;
+        }
+
+        .menu-track img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid var(--color-gold);
+            border-radius: var(--spacing-sm);
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Footer adjustment for bottom nav on mobile */
+        @media (max-width: 768px) {
+            footer {
+                padding-bottom: 140px;
+            }
+        }
+
+        .menu-track:hover {
+            animation-play-state: paused;
         }
 
         /* Animations */
@@ -863,6 +928,33 @@
                 <span class="defunte-name-highlight">Kouzalode djotondagba agounha</span><br><br>
                 Décédé des suites d'une courte maladie dans sa 90ème année
             </div>
+
+            <!-- Audio Annonce de décès -->
+            <div class="audio-wrapper reveal">
+                <div class="custom-audio-player">
+                    <button class="audio-play-btn" id="audioPlayBtnAnnonce" aria-label="Lecture/Pause">
+                        <svg id="playIconAnnonce" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pauseIconAnnonce" viewBox="0 0 24 24" style="display: none;">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <div class="audio-info">
+                        <p class="audio-track-name">Annonce de décès</p>
+                    </div>
+                    <div class="audio-visualizer">
+                        <div class="audio-bar paused"></div>
+                        <div class="audio-bar paused"></div>
+                        <div class="audio-bar paused"></div>
+                        <div class="audio-bar paused"></div>
+                        <div class="audio-bar paused"></div>
+                    </div>
+                </div>
+                <audio id="mainAudioAnnonce">
+                    <source id="audioAnnonce-source" src="" type="audio/mpeg">
+                </audio>
+            </div>
         </section>
 
         <!-- Photo -->
@@ -944,11 +1036,46 @@
             
             <div class="big-merci reveal">Merci</div>
         </section>
+
+        <!-- Menu Carousel Section -->
+        <section class="menu-section" id="menu">
+            <h2 class="section-title reveal">Au menu</h2>
+            <div class="menu-carousel reveal">
+                <div class="menu-track">
+                    <img src="assets/images/menu/62e133dca66a0-sobebra.webp" alt="Plat">
+                    <img src="assets/images/menu/Sobebra-1-jpg.webp" alt="Plat">
+                    <img src="assets/images/menu/akassa poisson.jpg" alt="Akassa poisson">
+                    <img src="assets/images/menu/blokoto.jpg" alt="Blokoto">
+                    <img src="assets/images/menu/chichanga.jpg" alt="Chichanga">
+                    <img src="assets/images/menu/dish.jpg" alt="Plat">
+                    <img src="assets/images/menu/dish1.jpg" alt="Plat">
+                    <img src="assets/images/menu/entrée.jpg" alt="Entrée">
+                    <img src="assets/images/menu/hors d'oeuvre.webp" alt="Hors d'oeuvre">
+                    <img src="assets/images/menu/plat de riz.jpg" alt="Plat de riz">
+                    <img src="assets/images/menu/télibo legume.jpg" alt="Télibo légume">
+                    <!-- Duplicate for seamless loop -->
+                    <img src="assets/images/menu/62e133dca66a0-sobebra.webp" alt="Plat">
+                    <img src="assets/images/menu/Sobebra-1-jpg.webp" alt="Plat">
+                    <img src="assets/images/menu/akassa poisson.jpg" alt="Akassa poisson">
+                    <img src="assets/images/menu/blokoto.jpg" alt="Blokoto">
+                    <img src="assets/images/menu/chichanga.jpg" alt="Chichanga">
+                    <img src="assets/images/menu/dish.jpg" alt="Plat">
+                    <img src="assets/images/menu/dish1.jpg" alt="Plat">
+                    <img src="assets/images/menu/entrée.jpg" alt="Entrée">
+                    <img src="assets/images/menu/hors d'oeuvre.webp" alt="Hors d'oeuvre">
+                    <img src="assets/images/menu/plat de riz.jpg" alt="Plat de riz">
+                    <img src="assets/images/menu/télibo legume.jpg" alt="Télibo légume">
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <p class="footer-credit">
             Réalisé par <span>YEKPON DIGIT</span>
+        </p>
+        <p class="footer-promo">
+            Vous avez une cérémonie, un mariage, un enterrement, un anniversaire et vous voulez commander des invitations digitales sur mesures avec toutes les options possibles : cliquer en dessous pour commander
         </p>
         <a href="https://wa.me/2290148494906" target="_blank" rel="noopener noreferrer" class="btn">
             Commander
@@ -968,6 +1095,7 @@
             
             // Audio
             document.getElementById('audio1-source').src = getAudioUrl('main');
+            document.getElementById('audioAnnonce-source').src = getAudioUrl('annonce');
             document.getElementById('audio2-source').src = getAudioUrl('thanks');
             
             // Log pour vérification
@@ -979,6 +1107,7 @@
                 souvenir1: getImageUrl('souvenir1'),
                 souvenir2: getImageUrl('souvenir2'),
                 audio1: getAudioUrl('main'),
+                audioAnnonce: getAudioUrl('annonce'),
                 audio2: getAudioUrl('thanks')
             });
         });
@@ -1102,6 +1231,27 @@
             console.error('Erreur de chargement audio 1:', e);
             console.log('Code erreur:', audio1.error?.code);
             console.log('Message erreur:', audio1.error?.message);
+        });
+
+        // Audio Annonce - Manuel play
+        const audioAnnonce = document.getElementById('mainAudioAnnonce');
+        const playBtnAnnonce = document.getElementById('audioPlayBtnAnnonce');
+        const playIconAnnonce = document.getElementById('playIconAnnonce');
+        const pauseIconAnnonce = document.getElementById('pauseIconAnnonce');
+        const audioBarsAnnonce = playBtnAnnonce.parentElement.querySelectorAll('.audio-visualizer .audio-bar');
+
+        playBtnAnnonce.addEventListener('click', () => {
+            if (audioAnnonce.paused) {
+                audioAnnonce.play();
+                playIconAnnonce.style.display = 'none';
+                pauseIconAnnonce.style.display = 'block';
+                audioBarsAnnonce.forEach(bar => bar.classList.remove('paused'));
+            } else {
+                audioAnnonce.pause();
+                playIconAnnonce.style.display = 'block';
+                pauseIconAnnonce.style.display = 'none';
+                audioBarsAnnonce.forEach(bar => bar.classList.add('paused'));
+            }
         });
 
         // Audio 2
