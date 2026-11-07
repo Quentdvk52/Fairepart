@@ -1204,9 +1204,24 @@
             document.getElementById('souvenir2-image').src = getImageUrl('souvenir2');
             
             // Audio
-            document.getElementById('audio1-source').src = getAudioUrl('main');
-            document.getElementById('audioAnnonce-source').src = getAudioUrl('annonce');
-            document.getElementById('audio2-source').src = getAudioUrl('thanks');
+            const audio1Src = getAudioUrl('main');
+            const audioAnnonceSrc = getAudioUrl('annonce');
+            const audio2Src = getAudioUrl('thanks');
+            
+            document.getElementById('audio1-source').src = audio1Src;
+            document.getElementById('audioAnnonce-source').src = audioAnnonceSrc;
+            document.getElementById('audio2-source').src = audio2Src;
+            
+            // Force le rechargement des audios
+            document.getElementById('mainAudio1').load();
+            document.getElementById('mainAudioAnnonce').load();
+            document.getElementById('mainAudio2').load();
+            
+            console.log('Audio sources assignées:', {
+                audio1: audio1Src,
+                annonce: audioAnnonceSrc,
+                thanks: audio2Src
+            });
             
             // Log pour vérification
             console.log('Médias chargés:', {
@@ -1216,9 +1231,9 @@
                 tissue: getImageUrl('tissue'),
                 souvenir1: getImageUrl('souvenir1'),
                 souvenir2: getImageUrl('souvenir2'),
-                audio1: getAudioUrl('main'),
-                audioAnnonce: getAudioUrl('annonce'),
-                audio2: getAudioUrl('thanks')
+                audio1: audio1Src,
+                annonce: audioAnnonceSrc,
+                thanks: audio2Src
             });
         });
 
@@ -1366,8 +1381,7 @@
         const pauseIconAnnonce = document.getElementById('pauseIconAnnonce');
         const audioBarsAnnonce = playBtnAnnonce.parentElement.querySelectorAll('.audio-visualizer .audio-bar');
 
-        // Charger l'audio annonce et ajouter erreur listener
-        audioAnnonce.load();
+        // Ajouter erreur listener
         audioAnnonce.addEventListener('error', (e) => {
             console.error('Erreur de chargement audio annonce:', e);
             console.log('Code erreur:', audioAnnonce.error?.code);
@@ -1405,8 +1419,7 @@
         const pauseIcon2 = document.getElementById('pauseIcon2');
         const audioBars2 = document.querySelectorAll('#remerciements .audio-bar');
 
-        // Charger l'audio 2 et ajouter erreur listener
-        audio2.load();
+        // Ajouter erreur listener
         audio2.addEventListener('error', (e) => {
             console.error('Erreur de chargement audio 2:', e);
             console.log('Code erreur:', audio2.error?.code);
