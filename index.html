@@ -1283,13 +1283,19 @@
         gsap.set('.hero-name', { y: 30 });
         gsap.set('.hero-candle-age', { y: 50 });
 
-        // Définir tous les audios d'abord
+        // Audio 1 - Auto-play
         const audio1 = document.getElementById('mainAudio1');
         const audioAnnonce = document.getElementById('mainAudioAnnonce');
         const audio2 = document.getElementById('mainAudio2');
+        const playBtn1 = document.getElementById('audioPlayBtn1');
+        const playIcon1 = document.getElementById('playIcon1');
+        const pauseIcon1 = document.getElementById('pauseIcon1');
+        const audioBars1 = document.querySelectorAll('#audio1 .audio-bar');
 
         // Fonction pour arrêter tous les audios sauf celui spécifié
         function stopAllAudios(exceptAudio) {
+            const audioAnnonce = document.getElementById('mainAudioAnnonce');
+            const audio2 = document.getElementById('mainAudio2');
             const allAudios = [audio1, audioAnnonce, audio2];
             allAudios.forEach(audio => {
                 if (audio && audio !== exceptAudio && !audio.paused) {
@@ -1298,12 +1304,6 @@
                 }
             });
         }
-
-        // Audio 1 - Auto-play
-        const playBtn1 = document.getElementById('audioPlayBtn1');
-        const playIcon1 = document.getElementById('playIcon1');
-        const pauseIcon1 = document.getElementById('pauseIcon1');
-        const audioBars1 = document.querySelectorAll('#audio1 .audio-bar');
 
         const initAudio1 = () => {
             console.log('Tentative de lecture audio 1...');
@@ -1366,12 +1366,19 @@
         const pauseIconAnnonce = document.getElementById('pauseIconAnnonce');
         const audioBarsAnnonce = playBtnAnnonce.parentElement.querySelectorAll('.audio-visualizer .audio-bar');
 
-        // Charger l'audio annonce
+        // Charger l'audio annonce et ajouter erreur listener
         audioAnnonce.load();
+        audioAnnonce.addEventListener('error', (e) => {
+            console.error('Erreur de chargement audio annonce:', e);
+            console.log('Code erreur:', audioAnnonce.error?.code);
+            console.log('Message erreur:', audioAnnonce.error?.message);
+            console.log('Source:', audioAnnonce.src);
+        });
 
         playBtnAnnonce.addEventListener('click', () => {
             console.log('Clic sur bouton audio annonce, paused:', audioAnnonce.paused);
             console.log('Source audio annonce:', audioAnnonce.src);
+            console.log('Audio readyState:', audioAnnonce.readyState);
             if (audioAnnonce.paused) {
                 stopAllAudios(audioAnnonce);
                 audioAnnonce.play().then(() => {
@@ -1382,6 +1389,7 @@
                 }).catch(error => {
                     console.error('Erreur lecture audio annonce:', error);
                     console.log('Source:', audioAnnonce.src);
+                    console.log('Error name:', error.name);
                 });
             } else {
                 audioAnnonce.pause();
@@ -1397,12 +1405,19 @@
         const pauseIcon2 = document.getElementById('pauseIcon2');
         const audioBars2 = document.querySelectorAll('#remerciements .audio-bar');
 
-        // Charger l'audio 2
+        // Charger l'audio 2 et ajouter erreur listener
         audio2.load();
+        audio2.addEventListener('error', (e) => {
+            console.error('Erreur de chargement audio 2:', e);
+            console.log('Code erreur:', audio2.error?.code);
+            console.log('Message erreur:', audio2.error?.message);
+            console.log('Source:', audio2.src);
+        });
 
         playBtn2.addEventListener('click', () => {
             console.log('Clic sur bouton audio 2, paused:', audio2.paused);
             console.log('Source audio 2:', audio2.src);
+            console.log('Audio readyState:', audio2.readyState);
             if (audio2.paused) {
                 stopAllAudios(audio2);
                 audio2.play().then(() => {
@@ -1413,6 +1428,7 @@
                 }).catch(error => {
                     console.error('Erreur lecture manuelle audio 2:', error);
                     console.log('Source:', audio2.src);
+                    console.log('Error name:', error.name);
                 });
             } else {
                 audio2.pause();
@@ -1420,12 +1436,6 @@
                 pauseIcon2.style.display = 'none';
                 audioBars2.forEach(bar => bar.classList.add('paused'));
             }
-        });
-
-        audio2.addEventListener('error', (e) => {
-            console.error('Erreur de chargement audio 2:', e);
-            console.log('Code erreur:', audio2.error?.code);
-            console.log('Message erreur:', audio2.error?.message);
         });
 
         // Menu carousel navigation (mobile)
